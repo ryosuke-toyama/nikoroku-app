@@ -10,6 +10,8 @@ RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - \
 RUN wget https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O commandlinetools.zip \
   && mkdir -p /usr/local/android-sdk/cmdline-tools/latest \
   && unzip commandlinetools.zip -d /usr/local/android-sdk/cmdline-tools/latest \
+  && mv /usr/local/android-sdk/cmdline-tools/latest/cmdline-tools/* /usr/local/android-sdk/cmdline-tools/latest/ \
+  && rm -rf /usr/local/android-sdk/cmdline-tools/latest/cmdline-tools \
   && rm commandlinetools.zip
 
 # 環境変数の設定
@@ -28,10 +30,13 @@ RUN npm install -g react-native-cli
 WORKDIR /usr/src/app
 
 # プロジェクトファイルをコンテナ内にコピー
-COPY . .
+COPY package*.json ./
 
 # プロジェクトの依存関係をインストール
 RUN npm install
+
+# 残りのプロジェクトファイルをコピー
+COPY . .
 
 # デフォルトのコマンド
 CMD ["npm", "start"]
