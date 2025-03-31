@@ -6,4 +6,5 @@ services:
     volumes:
       - .:/usr/src/app
     ports:
-      - "8081:8081" # Metro Bundlerのデフォルトポート
+      - "8081:8081"
+      
