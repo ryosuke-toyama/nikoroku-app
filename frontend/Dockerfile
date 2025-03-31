@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # プロジェクトの依存関係をインストール
-RUN npm install
+RUN npm ci
 
 # 残りのプロジェクトファイルをコピー
 COPY . .
