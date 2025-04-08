@@ -7,4 +7,9 @@ services:
       - .:/usr/src/app
     ports:
       - "8081:8081"
-      
+    networks:
+      - nikoroku_network
+
+networks:
+  nikoroku_network:
+    external: true
