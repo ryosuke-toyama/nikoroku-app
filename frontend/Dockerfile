@@ -1,17 +1,8 @@
-# ベースイメージとしてreactnativecommunityを使用
-FROM reactnativecommunity/react-native-android
+FROM node:22-alpine
 
-# 作業ディレクトリの設定
-WORKDIR /usr/src/app
-
-# プロジェクトファイルをコンテナ内にコピー
-COPY package*.json ./
-
-# プロジェクトの依存関係をインストール
-RUN npm ci
-
-# 残りのプロジェクトファイルをコピー
-COPY . .
-
-# デフォルトのコマンド
+WORKDIR /app
+COPY frontend/package.json frontend/package-lock.json /app/
+RUN npm install --flozen-lockfile
+COPY frontend/ /app/
+EXPOSE 5137
 CMD ["npm", "start"]
