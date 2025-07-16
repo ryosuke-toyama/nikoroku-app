@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "https://localhost:5137"
+    origins "https://localhost:5173"
     # 本番環境のURL
     # origins "https://..."
 
